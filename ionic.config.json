@@ -1,0 +1,7 @@
+{
+  "name": "proyecto-gorra",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
