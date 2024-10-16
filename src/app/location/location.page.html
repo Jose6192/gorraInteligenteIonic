@@ -4,7 +4,24 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
+  
   <capacitor-google-map #map></capacitor-google-map>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="album" routerLink="/album">
+        <ion-icon name="albums-outline"></ion-icon>
+        <ion-label>album</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="location" routerLink="/location">
+        <ion-icon name="compass-outline"></ion-icon>
+        <ion-label>location</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="config" routerLink="/config">
+        <ion-icon name="settings-outline"></ion-icon>
+        <ion-label>config</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

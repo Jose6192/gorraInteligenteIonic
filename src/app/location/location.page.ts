@@ -1,10 +1,17 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { RouterLink } from '@angular/router';
+import { IonTabs, IonTabBar, IonIcon, IonTabButton } from '@ionic/angular/standalone';
+import { albums, settings, compass } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalPage } from '../modal/modal.page';
+import { TabsComponent } from "../tabs/tabs.component";
 
 @Component({
   selector: 'app-location',
@@ -12,7 +19,7 @@ import { ModalPage } from '../modal/modal.page';
   styleUrls: ['./location.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel, TabsComponent, RouterLink, IonTabs, IonTabBar, IonIcon, IonTabButton]
 })
 export class LocationPage implements OnInit {
 
@@ -38,7 +45,13 @@ export class LocationPage implements OnInit {
   @ViewChild('map') mapRef: ElementRef | undefined;
   map: GoogleMap | undefined;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) {
+    addIcons({
+      'compass-outline': compass,
+      'albums-outline': albums,
+      'settings-outline': settings
+    });
+  }
 
   ionViewDidEnter() {
     this.createMap();
