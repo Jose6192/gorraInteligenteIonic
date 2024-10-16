@@ -26,4 +26,8 @@ export const routes: Routes = [
     path: 'location',
     loadComponent: () => import('./location/location.page').then( m => m.LocationPage)
   },
+  {
+    path: 'modal',
+    loadComponent: () => import('./modal/modal.page').then( m => m.ModalPage)
+  },
 ];
