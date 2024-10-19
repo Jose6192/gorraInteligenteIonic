@@ -1,14 +1,9 @@
-.login-container {
+.register-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-}
-
-.icon {
-  font-size: 100px;
-  margin-bottom: 20px;
 }
 
 ion-item {
@@ -17,7 +12,7 @@ ion-item {
   margin-bottom: 15px;
 }
 
-.login-button {
+.register-button {
   width: 100%;
   max-width: 400px;
   margin-top: 20px;
@@ -31,4 +26,21 @@ ion-item {
 .additional-links small {
   display: block;
   margin-top: 10px;
+}
+
+ion-icon {
+  font-size: 100px;
+  margin-bottom: 20px;
+}
+
+/* Para el tema claro */
+ion-icon {
+  color: var(--ion-color-dark);
+  /* Color para el tema oscuro */
+}
+
+/* Para el tema oscuro */
+ion-icon.dark {
+  color: var(--ion-color-light);
+  /* Color para el tema claro */
 }

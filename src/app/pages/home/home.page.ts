@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, IonIcon} from '@ionic/angular/standalone';
-import { TabsComponent } from '../tabs/tabs.component';
+import { TabsComponent } from '../../component/tabs/tabs.component';
 import { addIcons } from 'ionicons';
-import { person } from 'ionicons/icons';
+import { personCircleOutline } from 'ionicons/icons';
 
 
 @Component({
@@ -14,9 +14,7 @@ import { person } from 'ionicons/icons';
 })
 export class HomePage {
   constructor() {
-    addIcons({
-      'person-circle-outline': person
-    });
+    addIcons({personCircleOutline});
   }
 
   logIn() {

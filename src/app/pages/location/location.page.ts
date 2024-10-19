@@ -10,8 +10,8 @@ import { addIcons } from 'ionicons';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
-import { ModalPage } from '../modal/modal.page';
-import { TabsComponent } from "../tabs/tabs.component";
+import { ModalPage } from '../../component/modal/modal.page';
+import { TabsComponent } from "../../component/tabs/tabs.component";
 
 @Component({
   selector: 'app-location',
@@ -62,12 +62,15 @@ export class LocationPage implements OnInit {
       id: 'my-map',
       apiKey: 'AIzaSyCLa_oMJYpLLe3ozQ6eT08LzfIQbDbpV9E',
       element: this.mapRef?.nativeElement,
+      language: 'es',
       config: {
         center: { lat: 20.653, lng: -87.080 },
-        zoom: 12
+        zoom: 12,
+        disableDefaultUI: true,
       }
     });
     this.addMarkers();
+    this.map.enableCurrentLocation(true);
   }
 
   async addMarkers() {

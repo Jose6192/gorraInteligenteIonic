@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonIcon} from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { person } from 'ionicons/icons';
-import { TabsComponent } from "../tabs/tabs.component";
+import { person, personCircleOutline } from 'ionicons/icons';
+import { TabsComponent } from "../../component/tabs/tabs.component";
 
 @Component({
   selector: 'app-config',
@@ -17,9 +17,7 @@ import { TabsComponent } from "../tabs/tabs.component";
 export class ConfigPage implements OnInit {
 
   constructor() {
-    addIcons({
-      'person-circle-outline': person
-    });
+    addIcons({personCircleOutline});
   }
 
   ngOnInit() {
