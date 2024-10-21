@@ -1,10 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <div class="config-container">
-    <h1>Configuración</h1>
-    <ion-icon name="person-circle-outline" class="config-icon"></ion-icon>
-    <ion-button expand="block" color="primary" class="config-button">
+    <ion-icon name="person-circle-outline" class="config-icon" size="large" ></ion-icon>
+    <h2>Hola {{user}}</h2>
+    <ion-button expand="block" color="primary" class="config-button" href="/add-device">
       Añadir dispositivo
-      
     </ion-button>
     <ion-button expand="block" color="danger" class="config-button" href="/home">Cerrar sesión</ion-button>
   </div>

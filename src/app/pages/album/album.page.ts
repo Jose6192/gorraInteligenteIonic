@@ -12,6 +12,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel
 })
 export class AlbumPage implements OnInit {
 
+  //DEBES AGREGAR CARGA DIFERENTE DE IMAGENES PARA EL API
+
   gorras = ['Gorra1', 'Gorra2', 'Gorra3'];  // recibe los valores de la lista de gorras
 
   gorrasImg = [
