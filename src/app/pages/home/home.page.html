@@ -6,15 +6,11 @@
 
     <ion-icon src="../../../assets/icon/logo-ojo-svg.svg"></ion-icon>
 
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
+    <div class="form-container">
+      <ion-input label="Usuario" label-placement="floating" fill="solid" placeholder="Agrega tu usuario"></ion-input>
+      <br>
+      <ion-input   type="password" label="Contraseña" label-placement="floating" fill="solid" placeholder="Agrega tu contraseña"></ion-input>
+    </div>
 
     <ion-button expand="block" class="login-button" href="/tabs/location">Iniciar sesión</ion-button>
 

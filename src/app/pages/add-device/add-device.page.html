@@ -13,15 +13,11 @@
   <div class="device-container">
     <h1>Agrega un dispositivo</h1>
 
-    <ion-item>
-      <ion-label position="floating">Nombre del dispositivo</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Identificador</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    <div class="form-container">
+      <ion-input label="Dispositivo" label-placement="floating" fill="solid" placeholder="Nombre del dispositivo"></ion-input>
+      <br>
+      <ion-input label="Identificador" label-placement="floating" fill="solid" placeholder="Agrega el identificador"></ion-input>
+    </div>
 
     <ion-button expand="block" class="register-button" (click)="addDevice()" >Agregar dispositivo</ion-button>
   </div>

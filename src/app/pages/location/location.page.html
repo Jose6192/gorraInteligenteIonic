@@ -4,6 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <capacitor-google-map #map></capacitor-google-map>
+  <ion-list >
+    <ion-item>
+      <ion-toggle>{{gorras[0].title}}</ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-toggle>{{gorras[1].title}}</ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-toggle>{{gorras[2].title}}</ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>
