@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonIcon, IonTitle, IonHeader, IonToolbar } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { person, personCircleOutline } from 'ionicons/icons';
+import { personCircleOutline } from 'ionicons/icons';
 import { TabsComponent } from "../../component/tabs/tabs.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-config',
@@ -16,7 +17,7 @@ import { TabsComponent } from "../../component/tabs/tabs.component";
 })
 export class ConfigPage implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
     addIcons({personCircleOutline});
   }
 
@@ -38,7 +39,8 @@ export class ConfigPage implements OnInit {
   }
 
   logOut() {
-    console.log('Cerrar sesión');
+    localStorage.removeItem('token');
+    this.router.navigate(['/home']);
     // Aquí puedes agregar la lógica para cerrar sesión
   }
 
