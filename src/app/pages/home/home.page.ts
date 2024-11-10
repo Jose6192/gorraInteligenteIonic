@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonButton, IonIcon, ToastController } from '@ionic/angular/standalone';
-import { TabsComponent } from '../../component/tabs/tabs.component';
+import { IonContent, IonInput, IonButton, IonIcon, ToastController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { personCircleOutline } from 'ionicons/icons';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -13,13 +12,13 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, TabsComponent, IonItem, IonLabel, IonInput, IonButton, IonIcon, ReactiveFormsModule, CommonModule],
+  imports: [IonContent, IonInput, IonButton, IonIcon, ReactiveFormsModule, CommonModule],
 })
 export class HomePage {
 
   form = new FormGroup({
-    user: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
+    contrasena: new FormControl('', [Validators.required]),
   });
 
   errorMessage = '';
@@ -34,12 +33,13 @@ export class HomePage {
   async sendForm() { 
     if (this.form.valid) {
       const credentials = {
-        user: this.form.value.user || '',
-        password: this.form.value.password || ''
+        nombre: this.form.value.nombre || '',
+        contrasena: this.form.value.contrasena || ''
       };
       this.authService.login(credentials).subscribe(
         (res) => {
           localStorage.setItem('token', res.token);
+          this.form.reset();
           this.router.navigate(['/tabs/location']);
         }, async (err) => {
           await this.showErrorToast(err.error.message);

@@ -8,22 +8,18 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AuthServiceService {
 
+  /* private APIURL = 'http://34.174.123.196:3000/auth'; */
   private APIURL = 'http://localhost:3000/auth';
   private readonly _http = inject(HttpClient);
 
   constructor(private http: HttpClient) { }
 
-  register(credentials: { correo: string, password: string, usuario: string}): Observable<any> {
+  register(credentials: { nombre: string, correo: string, contrasena: string}): Observable<any> {
     return this.http.post(this.APIURL + "/register", credentials);
   }
 
-  login(credentials: { user: string, password: string }): Observable<any> {
-    return this._http.post(this.APIURL + "/login", credentials).pipe(
-      catchError((error) => {
-        console.error('Servicio-- Error en la solicitud de login:', error);
-        return throwError(error);
-      })
-    );
+  login(credentials: { nombre: string, contrasena: string}): Observable<any> {
+    return this._http.post(this.APIURL + "/login", credentials);
   }
 
   logout() {

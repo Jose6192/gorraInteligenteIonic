@@ -4,22 +4,13 @@
     <h2>Crear usuario</h2>
     <ion-icon src="../../../assets/icon/logo-ojo-svg.svg"></ion-icon>
 
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    <form [formGroup]="formRegistro">
+      <ion-input label="Usuario" label-position="floating" fill="solid" placeholder="crea un usuario" formControlName="nombre"></ion-input>
+      <ion-input label="Correo electrónico" label-position="floating" type="email" formControlName="correo" fill="solid" placeholder="ingresa tu correo"></ion-input>
+      <ion-input label="Contraseña" label-position="floating" type="password" formControlName="contrasena" fill="solid" placeholder="crea una contraseña segura"></ion-input>
+    </form>
 
-    <ion-item>
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" class="register-button" href="/home" >Crear usuario</ion-button>
+    <ion-button expand="block" class="register-button" (click)="sendForm()" >Crear usuario</ion-button>
 
     <div class="additional-links">
       <small>¿Ya tienes un usuario? <a href="/home">Iniciar sesión</a></small>

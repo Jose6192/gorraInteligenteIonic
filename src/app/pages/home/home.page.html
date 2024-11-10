@@ -7,16 +7,13 @@
     <ion-icon src="../../../assets/icon/logo-ojo-svg.svg"></ion-icon>
 
     <form [formGroup]="form" class="form-container">
-      <ion-input label="Usuario" label-placement="floating" fill="solid" placeholder="Agrega tu usuario" formControlName="user"></ion-input>
+      <ion-input label="Usuario" label-placement="floating" fill="solid" placeholder="Agrega tu usuario" formControlName="nombre"></ion-input>
       <br>
       <ion-input type="password" label="Contraseña" label-placement="floating" fill="solid"
-        placeholder="Agrega tu contraseña" formControlName="password"></ion-input>
+        placeholder="Agrega tu contraseña" formControlName="contrasena"></ion-input>
     </form>
 
-    <ion-button expand="block" class="login-button" (click)="sendForm()" id="open-toast">Iniciar sesión</ion-button>
-    <!-- <p id="message">{{errorMessage}}</p>
-    <ion-toast trigger="open-toast" message="This toast will disappear after 5 seconds" [duration]="5000"></ion-toast> -->
-
+    <ion-button expand="block" class="login-button" (click)="sendForm()">Iniciar sesión</ion-button>
 
     <div class="additional-links">
       <small>¿No tienes una cuenta? <a href="/register">Crear usuario</a></small>
