@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonIcon, IonTitle, IonHeader, IonToolbar } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { personCircleOutline } from 'ionicons/icons';
-import { TabsComponent } from "../../component/tabs/tabs.component";
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './config.page.html',
   styleUrls: ['./config.page.scss'],
   standalone: true,
-  imports: [IonToolbar, IonHeader, IonTitle, CommonModule, FormsModule, IonContent, IonButton, IonIcon, RouterLink, TabsComponent]
+  imports: [IonToolbar, IonHeader, IonTitle, CommonModule, IonContent, IonButton, IonIcon]
 })
 export class ConfigPage implements OnInit {
 

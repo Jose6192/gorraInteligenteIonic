@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./component/modal/modal.page').then(m => m.ModalPage)
   },
   {
+    path: 'album',
+    loadComponent: () => import('./pages/album/album.page').then(m => m.AlbumPage)
+  },
+  {
     path: 'tabs',
     loadComponent: () => import('./component/tabs/tabs.component').then(m => m.TabsComponent),
     children: [
@@ -27,14 +31,13 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/config/config.page').then(m => m.ConfigPage)
       },
       {
-        path: 'album',
-        loadComponent: () => import('./pages/album/album.page').then(m => m.AlbumPage)
-      },
-      {
         path: 'location',
         loadComponent: () => import('./pages/location/location.page').then(m => m.LocationPage)
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () => import('./pages/dashboard/dashboard.page').then( m => m.DashboardPage)
       }
-
     ]
   },
   {

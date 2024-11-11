@@ -5,20 +5,31 @@
         <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Agrega un dispositivo</ion-title>
+    <ion-title>Agrega un gorra</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="device-container">
-    <h1>Agrega un dispositivo</h1>
+    <h3>Asegurate de que la gorra este encendida y tu Bluetooth este activo</h3>
+    <br>
 
-    <div class="form-container">
-      <ion-input label="Dispositivo" label-placement="floating" fill="solid" placeholder="Nombre del dispositivo"></ion-input>
-      <br>
-      <ion-input label="Identificador" label-placement="floating" fill="solid" placeholder="Agrega el identificador"></ion-input>
-    </div>
+    <ion-button expand="block" color="primary" (click)="buscarDispositivos()">
+      Vincular Gorra por Bluetooth
+    </ion-button>
+    <br>
 
-    <ion-button expand="block" class="register-button" (click)="addDevice()" >Agregar dispositivo</ion-button>
+    <ion-list *ngIf="dispositivos.length > 0" >
+      <ion-item *ngFor="let dispositivo of dispositivos">
+        <ion-label>
+          <h2>{{ dispositivo.name }}</h2>
+          <ion-button fill="solid" color="secondary">
+            Agregar gorra
+          </ion-button>
+  
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
   </div>
 </ion-content>

@@ -1,17 +1,28 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
-import { IonTabs, IonTabBar, IonIcon, IonTabButton } from '@ionic/angular/standalone';
 import { albums, settings, compass } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, ModalController } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalPage } from '../../component/modal/modal.page';
-import { TabsComponent } from "../../component/tabs/tabs.component";
+import { NoDeviceComponent } from 'src/app/component/no-device/no-device.component';
+import { HatServiceService } from 'src/app/services/hat-service.service';
+
+interface Gorra {
+  id_gorra: number;
+  id_usuario: string;
+  modelo: string;
+  nombre: string;
+  estado: boolean;
+  coordinate: {
+    lat: number;
+    lng: number;
+  };
+}
 
 @Component({
   selector: 'app-location',
@@ -19,27 +30,35 @@ import { TabsComponent } from "../../component/tabs/tabs.component";
   styleUrls: ['./location.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, IonLabel, TabsComponent, RouterLink, IonTabs, IonTabBar, IonIcon, IonTabButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, NoDeviceComponent]
 })
 export class LocationPage implements OnInit {
 
+  private readonly hatService = inject(HatServiceService);
+
   // Gorras que debo obtener de la API
-  gorras = [
-    {
-      title: 'gorra 1',
+  gorras: Gorra[] = [
+    /* {
+      id: 1,
+      name: 'gorra 1',
       coordinate: { lat: 20.674, lng: -87.083 },
       snippet: 'Jose',
+      connected: true
     },
     {
-      title: 'gorra 2',
-      coordinate: { lat: 20.671, lng: -87.089 },
-      snippet: 'Maria',
+      id: 2,
+      name: 'gorra 2',
+      coordinate: { lat: 20.673, lng: -87.083 },
+      snippet: 'Carlos',
+      connected: false
     },
     {
-      title: 'gorra 3',
-      coordinate: { lat: 20.678, lng: -87.075 },
-      snippet: 'Pedro',
-    }
+      id: 3,
+      name: 'gorra 3',
+      coordinate: { lat: 20.672, lng: -87.083 },
+      snippet: 'Juan',
+      connected: true
+    } */
   ];
 
   @ViewChild('map') mapRef: ElementRef | undefined;
@@ -52,6 +71,27 @@ export class LocationPage implements OnInit {
       'settings-outline': settings
     });
   }
+
+  ngOnInit() {
+    this.getHats();
+    
+  }
+
+  getHats() {
+    this.hatService.getHats(1).subscribe((res:Gorra[]) => {
+      console.log(res);
+      console.log(this.gorras);
+      this.gorras = res;
+    }, (err:Gorra) => {
+      console.log(err);
+    });
+  }
+
+/*   getCordinates(){
+    this.gorras.forEach((gorra) => {
+      push(coordinate: { lat: 20.673, lng: -87.083 });
+    });
+  } */
 
   ionViewDidEnter() {
     this.createMap();
@@ -91,11 +131,5 @@ export class LocationPage implements OnInit {
     })
   }
 
-  
-
-  ngOnInit() {
-  }
-
- 
 
 }

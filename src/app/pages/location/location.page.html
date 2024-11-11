@@ -5,16 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  @if (gorras.length === 0) {
+  <app-no-device></app-no-device>
+  }
+  @else {
   <capacitor-google-map #map></capacitor-google-map>
-  <ion-list >
-    <ion-item>
-      <ion-toggle>{{gorras[0].title}}</ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-toggle>{{gorras[1].title}}</ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-toggle>{{gorras[2].title}}</ion-toggle>
+  <ion-list>
+    <ion-item *ngFor="let gorra of gorras">
+      <ion-toggle>{{gorra.nombre}}</ion-toggle>
     </ion-item>
   </ion-list>
+  }
+
 </ion-content>
