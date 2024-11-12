@@ -17,7 +17,8 @@ export class HatServiceService {
   }
 
   getHats(id_usuario: number): any {
-    return this.http.get(`${this.APIURL}/get/${id_usuario}`);
+    let hats = this.http.get(`${this.APIURL}/get/${id_usuario}`);
+    return hats;
   }
   
 }

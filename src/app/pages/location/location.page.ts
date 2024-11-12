@@ -2,15 +2,13 @@ import { Component, OnInit, ElementRef, ViewChild, inject } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { albums, settings, compass } from 'ionicons/icons';
-import { addIcons } from 'ionicons';
-
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalPage } from '../../component/modal/modal.page';
 import { NoDeviceComponent } from 'src/app/component/no-device/no-device.component';
 import { HatServiceService } from 'src/app/services/hat-service.service';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 interface Gorra {
   id_gorra: number;
@@ -18,10 +16,8 @@ interface Gorra {
   modelo: string;
   nombre: string;
   estado: boolean;
-  coordinate: {
-    lat: number;
-    lng: number;
-  };
+  latitud: number;
+  longitud: number;
 }
 
 @Component({
@@ -34,64 +30,50 @@ interface Gorra {
 })
 export class LocationPage implements OnInit {
 
+  constructor(private modalCtrl: ModalController) { }
+
   private readonly hatService = inject(HatServiceService);
+  private readonly authService = inject(AuthServiceService);
 
   // Gorras que debo obtener de la API
-  gorras: Gorra[] = [
-    /* {
-      id: 1,
-      name: 'gorra 1',
-      coordinate: { lat: 20.674, lng: -87.083 },
-      snippet: 'Jose',
-      connected: true
-    },
-    {
-      id: 2,
-      name: 'gorra 2',
-      coordinate: { lat: 20.673, lng: -87.083 },
-      snippet: 'Carlos',
-      connected: false
-    },
-    {
-      id: 3,
-      name: 'gorra 3',
-      coordinate: { lat: 20.672, lng: -87.083 },
-      snippet: 'Juan',
-      connected: true
-    } */
-  ];
+  maerker: Marker[] = [];
+  gorras: Gorra[] = [];
 
   @ViewChild('map') mapRef: ElementRef | undefined;
   map: GoogleMap | undefined;
 
-  constructor(private modalCtrl: ModalController) {
-    addIcons({
-      'compass-outline': compass,
-      'albums-outline': albums,
-      'settings-outline': settings
-    });
+  async ngOnInit() {
+    await this.getHats();
+    for (let i = 0; i < this.gorras.length; i++) {
+      this.maerker.push(this.toMaerker(this.gorras[i]));
+    }
   }
 
-  ngOnInit() {
-    this.getHats();
-    
+  //agrega formato coordinate para los markadores del mapa
+  toMaerker(gorra: Gorra) {
+    return {
+      title: gorra.nombre,
+      coordinate: { lat: Number(gorra.latitud), lng: Number(gorra.longitud)}
+    }
   }
 
-  getHats() {
-    this.hatService.getHats(1).subscribe((res:Gorra[]) => {
-      console.log(res);
-      console.log(this.gorras);
-      this.gorras = res;
-    }, (err:Gorra) => {
-      console.log(err);
-    });
-  }
+  async getHats() {
+    return new Promise<void>((resolve, reject) => {
+      // Obtener el id del usuario para enviárselo a la API
+      let id = this.authService.getId(localStorage.getItem('token'));
+      
+      this.hatService.getHats(id).subscribe({
+          next: (res: Gorra[]) => {
+              this.gorras = res;
+              resolve();
+          },
+          error: (err: any) => {
+              console.error(err);
+          }
+      });
+  });
 
-/*   getCordinates(){
-    this.gorras.forEach((gorra) => {
-      push(coordinate: { lat: 20.673, lng: -87.083 });
-    });
-  } */
+  }
 
   ionViewDidEnter() {
     this.createMap();
@@ -114,11 +96,10 @@ export class LocationPage implements OnInit {
   }
 
   async addMarkers() {
-    const markers: Marker[] = this.gorras;
+    const markers: Marker[] = this.maerker;
     const result = await this.map?.addMarkers(markers);
 
     this.map?.setOnMarkerClickListener(async (marker) => {
-      console.log('marker clicked', marker);
       const modal = await this.modalCtrl.create({
         component: ModalPage,
         componentProps: {

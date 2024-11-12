@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
+import { jwtDecode } from 'jwt-decode';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +31,12 @@ export class AuthServiceService {
   isAuthenticated(): boolean {
     // Verifica si el token existe
     return !!localStorage.getItem('token');
+  }
+
+  getId(token:any): any {
+    // Decodifica el token y obtiene el id del usuario
+    const decodedToken = jwtDecode<{ id: string }>(token);
+    return decodedToken.id;
   }
   
 }
