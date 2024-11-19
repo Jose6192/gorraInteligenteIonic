@@ -7,27 +7,28 @@
 <ion-content [fullscreen]="true" class="ion-padding">
 
   @if (gorras.length === 0){
-    <app-no-device></app-no-device>
+  <app-no-device></app-no-device>
   }
   @else {
-    <ion-list>
-      <ion-item *ngFor="let gorra of gorras">
-        <ion-label>
-          <h2>{{ gorra.nombre }}</h2>
-          <p>{{ gorra.estado ? 'Conectada' : 'Desconectada' }}</p>
-        </ion-label>
-  
-        <ion-buttons slot="end">
-          <ion-button fill="solid" color="secondary">
-            Imágenes
-          </ion-button>
-          
-          <ion-button fill="outline" color="danger">
-            Desconectar
-          </ion-button>
-        </ion-buttons>
-      </ion-item>
-    </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let gorra of gorras">
+      <ion-label>
+        <h2>{{ gorra.nombre }}</h2>
+        <p>{{ gorra.estado ? 'Conectada' : 'Desconectada' }}</p>
+      </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button fill="solid" color="secondary">
+          Imágenes
+        </ion-button>
+
+        <ion-button id="present-alert" fill="outline" color="danger" (click)="elimiarGorra(gorra)">
+          Desconectar
+        </ion-button>
+        
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
   }
 
 </ion-content>

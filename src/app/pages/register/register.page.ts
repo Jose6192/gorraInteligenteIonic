@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } 
 import { IonContent, IonInput, IonButton, IonIcon, ToastController} from '@ionic/angular/standalone';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
+import { ToastServiceService } from 'src/app/services/toast-service.service';
 
 @Component({
   selector: 'app-register',
@@ -21,8 +22,9 @@ export class RegisterPage {
   });
 
   private readonly authService = inject(AuthServiceService);
+  private readonly toastService = inject(ToastServiceService);
 
-  constructor(private router: Router, private toastController: ToastController) {
+  constructor(private router: Router) {
   }
 
   async sendForm() { 
@@ -34,39 +36,17 @@ export class RegisterPage {
       };
       this.authService.register(credentials).subscribe(
         async (res) => {
-          await this.showSuccesToast('Usuario registrado correctamente');
+          await this.toastService.showSuccesToast('Usuario registrado correctamente');
           this.router.navigate(['/home']);
         }, async (err) => {
           console.log(err);
-          await this.showErrorToast(err.error.message);
+          await this.toastService.showErrorToast(err.error.message);
         }
       );
     }
     else{
-      await this.showErrorToast('Por favor, rellene todos los campos');
+      await this.toastService.showErrorToast('Por favor, rellene todos los campos');
     };
   }
-
-  async showErrorToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 3000, // Duración en milisegundos
-      color: 'danger',
-      position: 'bottom'
-    });
-    await toast.present();
-  }
-
-  async showSuccesToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 3000, // Duración en milisegundos
-      color: 'success',
-      position: 'bottom'
-    });
-    await toast.present();
-  }
-
-
 
 }

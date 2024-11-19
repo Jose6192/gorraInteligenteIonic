@@ -6,7 +6,6 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, ModalCon
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { ModalPage } from '../../component/modal/modal.page';
-import { NoDeviceComponent } from 'src/app/component/no-device/no-device.component';
 import { HatServiceService } from 'src/app/services/hat-service.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
@@ -26,7 +25,7 @@ interface Gorra {
   styleUrls: ['./location.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem, NoDeviceComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonList, IonItem]
 })
 export class LocationPage implements OnInit {
 

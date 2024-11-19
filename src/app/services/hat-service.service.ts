@@ -12,13 +12,17 @@ export class HatServiceService {
 
   constructor(private http: HttpClient) { }
 
-  register(credentials: { nombre: string, color: string, precio: number, cantidad: number}): any {
-    return this.http.post(this.APIURL + "/register", credentials);
+  register(Gorra: { id_usuario: number, modelo:string, nombre:string, estado:number}): any {
+    return this.http.post(this.APIURL + "/register", Gorra);
   }
 
   getHats(id_usuario: number): any {
     let hats = this.http.get(`${this.APIURL}/get/${id_usuario}`);
     return hats;
+  }
+  
+  deleteHat(id_gorra: number): any {
+    return this.http.delete(`${this.APIURL}/delete/${id_gorra}`);
   }
   
 }

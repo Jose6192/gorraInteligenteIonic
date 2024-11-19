@@ -14,16 +14,16 @@
     <h3>Asegurate de que la gorra este encendida y tu Bluetooth este activo</h3>
     <br>
 
-    <ion-button expand="block" color="primary" (click)="buscarDispositivos()">
+    <ion-button expand="block" color="primary" (click)="buscarGorras()">
       Vincular Gorra por Bluetooth
     </ion-button>
     <br>
 
-    <ion-list *ngIf="dispositivos.length > 0" >
-      <ion-item *ngFor="let dispositivo of dispositivos">
+    <ion-list *ngIf="Gorras.length > 0" >
+      <ion-item *ngFor="let Gorra of Gorras">
         <ion-label>
-          <h2>{{ dispositivo.name }}</h2>
-          <ion-button fill="solid" color="secondary">
+          <h2>{{ Gorra.nombre }}</h2>
+          <ion-button fill="solid" color="secondary" (click)="agregarGorra(Gorra)">
             Agregar gorra
           </ion-button>
   
