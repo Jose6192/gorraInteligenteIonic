@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class AuthServiceService {
 
-  private APIURL = 'http://34.174.123.196:3000/auth';
+  private APIURL = 'https://gorra-api.ddns.net/auth';
   /* private APIURL = 'http://localhost:3000/auth'; */
   private readonly _http = inject(HttpClient);
 

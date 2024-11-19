@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HatServiceService {
   
-    private APIURL = 'http://34.174.123.196:3000/hats';
+    private APIURL = 'https://gorra-api.ddns.net/hats';
     /* private APIURL = 'http://localhost:3000/hats'; */
     private readonly _http = inject(HttpClient);
 

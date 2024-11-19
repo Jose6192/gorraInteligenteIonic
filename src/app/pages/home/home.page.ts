@@ -42,7 +42,7 @@ export class HomePage {
           this.form.reset();
           this.router.navigate(['/tabs/location']);
         }, async (err) => {
-          await this.showErrorToast(err.error.message);
+          await this.showErrorToast(err.message);
         }
       );
     }
