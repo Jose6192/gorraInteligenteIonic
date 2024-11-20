@@ -45,13 +45,15 @@ export class LocationPage implements OnInit {
     await this.getHats();
     for (let i = 0; i < this.gorras.length; i++) {
       this.maerker.push(this.toMaerker(this.gorras[i]));
-    }
+    } 
   }
 
   //agrega formato coordinate para los markadores del mapa
   toMaerker(gorra: Gorra) {
     return {
       title: gorra.nombre,
+      iconUrl: 'assets/marcador-gorra.svg',
+      iconSize: { width: 50, height: 50 },
       coordinate: { lat: Number(gorra.latitud), lng: Number(gorra.longitud)}
     }
   }

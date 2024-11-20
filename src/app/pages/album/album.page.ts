@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol, IonImg } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonSelect, IonSelectOption, IonGrid, IonRow, IonCol, IonImg, IonButtons, IonButton, IonIcon, NavController } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { add, arrowBackOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.page.html',
   styleUrls: ['./album.page.scss'],
   standalone: true,
-  imports: [IonImg, IonCol, IonRow, IonLabel, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSelect, IonSelectOption, IonGrid, IonImg]
+  imports: [IonIcon, IonButton, IonButtons, IonImg, IonCol, IonRow, IonLabel, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonSelect, IonSelectOption, IonGrid, IonImg]
 })
 export class AlbumPage implements OnInit {
 
@@ -42,11 +44,16 @@ export class AlbumPage implements OnInit {
 
   gorrasFiltradas: { img: string; type: string }[] = [];
 
-  constructor() {
+  constructor(private navCtrl: NavController) {
     this.gorrasFiltradas = this.gorrasImg;  // Inicialmente mostrar todas las gorras
+    addIcons({ arrowBackOutline, add });
   }
 
   ngOnInit() {
+  }
+
+  goBack() {
+    this.navCtrl.back(); // Regresa a la página anterior
   }
 
   filterGallery(event: CustomEvent) {
