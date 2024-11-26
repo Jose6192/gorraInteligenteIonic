@@ -52,7 +52,7 @@ export class LocationPage implements OnInit {
   toMaerker(gorra: Gorra) {
     return {
       title: gorra.nombre,
-      iconUrl: 'assets/marcador-gorra.svg',
+      iconUrl: 'assets/icon/marcador-gorra.svg',
       iconSize: { width: 50, height: 50 },
       coordinate: { lat: Number(gorra.latitud), lng: Number(gorra.longitud)}
     }

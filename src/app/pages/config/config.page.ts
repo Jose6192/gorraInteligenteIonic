@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonButton, IonIcon, IonTitle, IonHeader, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { personCircleOutline } from 'ionicons/icons';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-config',
@@ -18,16 +19,16 @@ export class ConfigPage implements OnInit {
     addIcons({personCircleOutline});
   }
 
+  private readonly authService = inject(AuthServiceService);
+
   ngOnInit() {
     this.getUsername();
   }
 
-  user: string = 'John Doe';
-  perfilUsuario: string = 'Admin';
-
+  user: string = '';
 
   getUsername() {
-    return this.user;
+    this.user = this.authService.getNombre(localStorage.getItem('token'));
   }
 
   agregarGorra() {

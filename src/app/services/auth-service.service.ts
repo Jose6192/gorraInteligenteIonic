@@ -35,8 +35,14 @@ export class AuthServiceService {
 
   getId(token:any): any {
     // Decodifica el token y obtiene el id del usuario
-    const decodedToken = jwtDecode<{ id: string }>(token);
+    const decodedToken = jwtDecode<{ id: string}>(token);
     return decodedToken.id;
+  }
+
+  getNombre(token:any): any {
+    // Decodifica el token y obtiene el nombre del usuario
+    const decodedToken = jwtDecode<{ nombre: string}>(token);
+    return decodedToken.nombre;
   }
   
 }

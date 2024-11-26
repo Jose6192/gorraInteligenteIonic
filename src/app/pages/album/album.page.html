@@ -10,24 +10,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Filtrar</ion-label>
-    <ion-select placeholder="Seleccionar Gorra" (ionChange)="filterGallery($event)">
-      <ion-select-option value="">Ver todas</ion-select-option>
-      <ion-select-option *ngFor="let type of gorras" [value]="type">{{ type }}</ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <!-- Galería de imágenes -->
-  <ion-grid>
+  <ion-grid *ngIf="imagenes.length > 0; else loading">
     <ion-row>
-      <ion-col size="6" *ngFor="let hat of gorrasFiltradas">
-        @defer (on viewport) {
-        <ion-img [src]="hat.img"></ion-img>  
-          } @placeholder {
-          <img alt="Placeholder photo" src="https://imageplaceholder.net/300">
-          }
+      <ion-col size="6" *ngFor="let imagen of imagenes">
+        <ion-img [src]="imagen"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
 </ion-content>
+
